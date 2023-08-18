@@ -2,9 +2,9 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import subscribeApi from '../../../api/subscribeApi';
 
 const Support = () => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState({ });
   const [subscriptionText, setSubscriptionText] = useState("");
-
+  console.log(email)
   useEffect(() => {
     const textData = localStorage.getItem("text") as string;
     if (textData) setSubscriptionText(textData);
@@ -17,7 +17,9 @@ const Support = () => {
   const handleSubmit = async (e:ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await subscribeApi.sendSubscription(email);
+       await subscribeApi.sendSubscription({
+        "email": email
+      });
       setSubscriptionText("You are already subscribed to the bank's newsletter");
     } catch(e) {
       console.warn(e);
@@ -42,7 +44,7 @@ const Support = () => {
               type="text"
               placeholder="Your email"
               className="icon"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail( e.target.value)}
             />
             <button type="submit">
               <svg width="31" height="41" viewBox="0 0 31 41" fill="none" xmlns="http://www.w3.org/2000/svg">

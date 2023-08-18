@@ -16,6 +16,12 @@
 .block-card-container__loan >* {
   margin-right: 40px;
   height: 236px;
+  width: 406px;
+
+  @include media-mobile {
+    width: 100%;
+    max-width: 300px;
+  }
 }
 
 .text-loaning {
@@ -70,6 +76,10 @@
   background: #EAECEE;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.20), 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
   padding: 32px;
+}
+
+.block-third .text-description {
+  width: 335px;
 }
 
 .two-cards {

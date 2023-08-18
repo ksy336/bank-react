@@ -1,18 +1,22 @@
+import axios from 'axios';
 const SWAGGER_URL = import.meta.env.VITE_REACT_APP_SWAGGER_URL;
 
 class SubscribeApi {
-  async sendSubscription(data) {
+  async sendSubscription(email) {
+    console.log(email);
     const options = {
-      method: "POST",
       headers: {
+        Accept: "*/*",
         "Content-Type": "application/json",
-        "accept": "*/*",
+        "Access-Control-Allow-Origin": "*",
       },
-      body: JSON.stringify(data),
     }
-    const response  = await fetch(`${SWAGGER_URL}/email`, options);
 
-    return await response.json();
+    const response = await axios.post(`${SWAGGER_URL}/email`, JSON.stringify(email), options)
+    if(!response) throw  new Error("Fetching data failed");
+    const data = await response.data;
+
+    return data;
   }
 }
 const subscribeApi = new SubscribeApi();

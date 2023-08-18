@@ -1,55 +1,33 @@
 import React from 'react';
+import PrescoringForm from '../PrescoringForm/PrescoringForm';
 
 const FormCard = () => {
   return (
     <div className="wrapper">
       <section className="form-container">
-        <article className="first-side">
-          <h2>Customize your card</h2>
-          <span>Step 1 of 5</span>
-          <div className="block-amount">
-            <input type="range" />
-          </div>
-          <div className="contact-info">Contact Information</div>
-        </article>
-        <article className="second-side">
-          <h3>You have chosen the amount</h3>
-          <span>150 000 ₽</span>
-        </article>
-        <form action="" className="form-loan">
-          <div className="form-block">
-            <label>Your last name</label>
-            <input type="text" placeholder="For Example Doe" />
-          </div>
-          <div className="form-block">
-            <label>Your email</label>
-            <input type="text" placeholder="test@gmail.com" />
-          </div>
-          <div className="form-block">
-            <label>Your first name</label>
-            <input type="text" placeholder="For Example Jhon" />
-          </div>
-          <div className="form-block">
-            <label>Your date of birth</label>
-            <input type="text" placeholder="Select Date and Time" />
-          </div>
-          <div className="form-block">
-            <label>Your patronymic</label>
-            <input type="text" placeholder="For Example Victorovich" />
-          </div>
-          <div className="form-block">
-            <label>Your passport series</label>
-            <input type="text" placeholder="0000" />
-          </div>
-          <div className="form-block">
-            <label>Select term</label>
-            <input type="text" placeholder="6 month" />
-          </div>
-          <div className="form-block">
-            <label>Your passport number</label>
-            <input type="text" placeholder="000000" />
-          </div>
-        </form>
+        <div className="prescoring-block">
+          <article className="first-side">
+            <div className="customize-text">
+              <h2>Customize your card</h2>
+              <span>Step 1 of 5</span>
+            </div>
+            <div className="block-amount">
+              <h5 className="select-amount">Select amount</h5>
+              <div className="one-hundred-money">150 000</div>
+              <input className="range-input" type="range" min="15 000" max="600 000" />
+              <div className="block-money">
+                <div className="amount-span">15 000</div>
+                <span>600 000</span>
+              </div>
+            </div>
+            <h5 className="contact-info">Contact Information</h5>
+          </article>
+          <article className="second-side">
+            <h6>You have chosen the amount</h6>
+            <span>150 000 ₽</span>
+          </article>
+        </div>
+        <PrescoringForm />
       </section>
     </div>
   );

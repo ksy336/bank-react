@@ -3,10 +3,11 @@ import star from "../../assets/icons/_.svg"
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import { useForm } from 'react-hook-form';
-import success from '../../assets/icons/Check_fill@3x.png';
-import error from '../../assets/icons/Close_round_fill@3x.png';
+// import success from '../../assets/icons/Check_fill@3x.png';
+// import error from '../../assets/icons/Close_round_fill@3x.png';
+import prescoringApi from '../../../api/prescoringApi';
 
-const PrescoringForm = () => {
+const PrescoringForm = ({amount}: number) => {
   const {handleSubmit, register, reset, formState: {errors}} = useForm({mode: "onChange"});
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -17,8 +18,25 @@ const PrescoringForm = () => {
   const [passportSeries, setPassportSeries] = useState("");
   const [passportNumber, setPassportNumber] = useState("");
 
-  const formSubmitHandlePrescoring = () => {
+  const formSubmitHandlePrescoring = async () => {
+    try {
+      await prescoringApi.sendFormData({
+        "amount": amount,
+        "term": term,
+        "firstName": name,
+        "lastName": lastName,
+        "middleName": middleName,
+        "email": mail,
+        "birthdate": birthdate,
+        "passportSeries": passportSeries,
+        "passportNumber": passportNumber
+      });
 
+    } catch(e) {
+      console.warn(e);
+      throw new Error(e);
+    }
+    reset()
   }
 
   return (
@@ -29,12 +47,12 @@ const PrescoringForm = () => {
             <label>Your last name </label>
             <span><img src={star} alt="star" /></span>
           </div>
-          <Input
+          <input
             className={`${errors?.lastName ? "input-prescoring error-text" : "input-prescoring"}`}
             type="text"
             placeholder="For Example Doe"
             {...register("lastName", {
-              min: 2,
+              min: 1,
               required: "Enter your last name",
               onChange: (e: ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)
             })} />
@@ -47,7 +65,7 @@ const PrescoringForm = () => {
             <label>Your first name </label>
             <span><img src={star} alt="star" /></span>
           </div>
-          <Input
+          <input
             className={`${errors?.name ? "input-prescoring error-text" : "input-prescoring"}`}
             type="text"
             placeholder="For Example Jhon"
@@ -62,7 +80,7 @@ const PrescoringForm = () => {
           <div className="label-block">
             <label>Your patronymic</label>
           </div>
-          <Input
+          <input
             className="input-prescoring"
             type="text"
             placeholder="For Example Victorovich"
@@ -74,14 +92,13 @@ const PrescoringForm = () => {
         <div className="form-block">
           <div className="label-block">
             <label>Select term </label>
-            <span><img src={star} alt="star" /></span>
           </div>
           <select
             className="input-prescoring"
             defaultValue="6 month"
             onChange={(e: ChangeEvent<HTMLInputElement>) => setTerm(e.target.value)}>
-            <option defaultValue="6 month">6 month</option>
-            <option value="6 month">12 months</option>
+            <option>6 month</option>
+            <option>12 months</option>
             <option value="">18 month</option>
             <option value="">24 month</option>
           </select>
@@ -93,13 +110,15 @@ const PrescoringForm = () => {
             <label>Your email</label>
             <span><img src={star} alt="star" /></span>
           </div>
-          <Input
+          <input
             className={`${errors?.email ? "input-prescoring error-text" : "input-prescoring"}`}
             type="email"
             placeholder="test@gmail.com"
             {...register("email", {
-              pattern: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              required: "Incorrect email address",
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: "Incorrect email address"
+              },
               onChange: (e: ChangeEvent<HTMLInputElement>) => setMail(e.target.value)
             })}
           />
@@ -110,12 +129,12 @@ const PrescoringForm = () => {
             <label>Your date of birth</label>
             <span><img src={star} alt="star" /></span>
           </div>
-          <Input
+          <input
             className={`${errors?.birthdate ? "input-prescoring error-text" : "input-prescoring"}`}
             type="date"
             placeholder="Select Date and Time"
             {...register("birthdate", {
-              min: 18,
+              // min: 18,
               required: "Incorrect date of birth",
               onChange: (e: ChangeEvent<HTMLInputElement>) => setBirthdate(e.target.value)
             })}
@@ -127,17 +146,16 @@ const PrescoringForm = () => {
             <label>Your passport series </label>
             <span><img src={star} alt="star" /></span>
           </div>
-          <Input
+          <input
             className={`${errors?.series ? "input-prescoring error-text" : "input-prescoring"}`}
             type="number"
             placeholder="0000"
             {...register("series", {
-              min: 4,
-              max: 4,
+              // valueAsNumber: true,
+              // validate: (value) => value === 4,
               required: "The series must be 4 digits",
               onChange: (e: ChangeEvent<HTMLInputElement>) => setPassportSeries(e.target.value)
             })} />
-          {console.log(errors?.series)}
           {errors?.series && <div className="error-description">{errors?.series?.message}</div>}
         </div>
         <div className="form-block">
@@ -145,13 +163,14 @@ const PrescoringForm = () => {
             <label>Your passport number</label>
             <span><img src={star} alt="star" /></span>
           </div>
-          <Input
+          <input
             className={`${errors?.number ? "input-prescoring error-text" : "input-prescoring"}`}
             type="number"
             placeholder="000000"
             {...register("number", {
-              min: 6,
-              max: 6,
+              // valueAsNumber: true,
+              // validate: (value) => value === 6,
+              // max: 6,
               required: "The series must be 6 digits",
               onChange: (e: ChangeEvent<HTMLInputElement>) => setPassportNumber(e.target.value)
             })} />

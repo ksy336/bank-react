@@ -3,7 +3,8 @@ export type InputType = {
   onChange: () => void;
   type: string;
   className: string;
-  placeholder: string
+  placeholder: string;
+  value?: string;
 }
 
 const Input = (props: InputType) => {
@@ -13,6 +14,7 @@ const Input = (props: InputType) => {
       type={props.type || 'text'}
       className={props.className}
       placeholder={props.placeholder}
+      // value={props.value}
       />
   )
 };

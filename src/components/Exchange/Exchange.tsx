@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import CurrencyItem from './CurrencyItem/CurrencyItem';
+import Currencies from './CurrencyItem/Currencies';
 import group from '../../assets/icons/Group.svg';
 import homeApi from '../../../api/homeApi';
 
@@ -31,12 +31,7 @@ const Exchange = () => {
           <div className="currency-data">
             <h2>Exchange rate in internet bank</h2>
             <h6>Currency</h6>
-            {/*{currencies?.map((item , index) => (*/}
-            {/*  <CurrencyItem*/}
-            {/*    key={index}*/}
-            {/*    item={item}*/}
-            {/*  />*/}
-            {/*))}*/}
+              <Currencies currencies={currencies} />
             <p className="exchange__courses">All courses</p>
           </div>
           <div className="exchange__update">

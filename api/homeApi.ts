@@ -1,9 +1,13 @@
 class HomeApi {
   async getCurrencies () {
     const currencies = ["USD", "EUR", "SGD", "MYR", "AUD", "JPY"];
-    const requestUrls = currencies.map((from) => {
-      return `https://currency-exchange.p.rapidapi.com/exchange?from=${from}&to=RUB&q=1.0`
-    })
+    const requestUrls = currencies.map((currency) => (
+      {
+       url: `https://currency-exchange.p.rapidapi.com/exchange?from=${currency}&to=RUB&q=1.0`,
+       currency
+      }
+    ));
+
     const options = {
       method: "GET",
       headers: {
@@ -12,9 +16,13 @@ class HomeApi {
       }
     }
 
-    return Promise.all(requestUrls.map(async url => {
+    return Promise.all(requestUrls.map(async ({ url, currency }) => {
       const resp = await fetch(url, options);
-      return resp.text();
+
+      return {
+        currency,
+        value: await resp.text()
+      };
     }));
   }
 }

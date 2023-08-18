@@ -2,7 +2,11 @@ import Button from '../Button/Button';
 import card from '../../assets/img/cardImage1 1.png';
 import React from 'react';
 
-const CardBlock = () => {
+const CardBlock = ({scrollTo}) => {
+  const handleScrollToElement = () => {
+    scrollTo.current?.scrollIntoView({behavior:'smooth'});
+  }
+
   return (
     <div className="wrapper card-block__wrapper">
       <section className="card-block__loan">
@@ -25,7 +29,7 @@ const CardBlock = () => {
                 <div className="percent-item">Card service is free</div>
               </div>
             </article>
-            <Button>Apply for card</Button>
+            <Button onClick={handleScrollToElement}>Apply for card</Button>
           </div>
           <div className="second-column">
             <img src={card} alt="card"  />

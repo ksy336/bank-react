@@ -1,7 +1,10 @@
 import React from 'react';
 import PrescoringForm from '../PrescoringForm/PrescoringForm';
+export type PropRef = {
+  scrollTo: React.ReactNode;
+}
 
-const FormCard = () => {
+const FormCard = ({scrollTo}) => {
   return (
     <div className="wrapper">
       <section className="form-container">
@@ -20,14 +23,14 @@ const FormCard = () => {
                 <span>600 000</span>
               </div>
             </div>
-            <h5 className="contact-info">Contact Information</h5>
+            <h5 className="contact-info" ref={scrollTo}>Contact Information</h5>
           </article>
           <article className="second-side">
             <h6>You have chosen the amount</h6>
             <span>150 000 ₽</span>
           </article>
         </div>
-        <PrescoringForm />
+        <PrescoringForm scrollTo={scrollTo} />
       </section>
     </div>
   );

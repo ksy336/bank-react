@@ -5,32 +5,24 @@ export type newsItemProp = {
   description: string;
   urlToImage: string;
   url: string;
+  itemRef: React.ReactNode;
 }
 
-const Card = (newsItem: newsItemProp) => {
-  console.log(newsItem)
+const Card = ({ newsItem, itemRef } : newsItemProp) => {
   const imageOnErrorHandler = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.src = defaultNews;
     event.currentTarget.className = "error";
   };
-  for(let i = 0; i < transformedArticles.length; i++) {
-    if(newsTitle[i] || newsDescription[i] || imageUrl[i] || newsItem[i]) {
-      newsTitle[i].textContent = transformedArticles[i]?.title.replaceAll(/<\/?[^>]+(>|$)/gi, "");
-      newsDescription[i].textContent = transformedArticles[i]?.description?.replaceAll(/<\/?[^>]+(>|$)/gi, "");
-      imageUrl[i].src = transformedArticles[i]?.urlToImage;
-      newsItem[i].href = transformedArticles[i].url;
-    }
-  }
 
   return (
-    <Link to="" className="news-item">
+    <Link to={newsItem?.url} className="news-item" ref={itemRef}>
       <img
-        src=""
+        src={newsItem?.urlToImage}
         alt="image"
         onError={imageOnErrorHandler}
       />
-      <p className="news-text"/>
-      <p className="description-text"/>
+      <p className="news-text">{newsItem?.title.replaceAll(/<\/?[^>]+(>|$)/gi, "")}</p>
+      <p className="description-text">{newsItem?.description?.replaceAll(/<\/?[^>]+(>|$)/gi, "")}</p>
     </Link>
   );
 };

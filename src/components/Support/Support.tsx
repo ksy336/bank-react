@@ -1,6 +1,30 @@
-import React from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import subscribeApi from '../../../api/subscribeApi';
 
 const Support = () => {
+  const [email, setEmail] = useState("");
+  const [subscriptionText, setSubscriptionText] = useState("");
+
+  useEffect(() => {
+    const textData = localStorage.getItem("text") as string;
+    if (textData) setSubscriptionText(textData);
+  }, []);
+
+  useEffect(() => {
+    JSON.stringify(localStorage.setItem("text", subscriptionText));
+  }, [subscriptionText]);
+
+  const handleSubmit = async (e:ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      await subscribeApi.sendSubscription(email);
+      setSubscriptionText("You are already subscribed to the bank's newsletter");
+    } catch(e) {
+      console.warn(e);
+      throw new Error(e);
+    }
+  };
+
   return (
     <section className="main__main__support">
       <div className="wrapper support__wrapper">
@@ -11,8 +35,15 @@ const Support = () => {
             <h4 className="support__text-description">Bank News</h4>
           </div>
         </article>
-        <form className="form">
-          <input type="text" placeholder="Your email" className="icon" />
+        <div className="text-subscribe">{subscriptionText}</div>
+        {!subscriptionText && (
+          <form className="form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Your email"
+              className="icon"
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+            />
             <button type="submit">
               <svg width="31" height="41" viewBox="0 0 31 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clipPath="url(#clip0_93_3979)">
@@ -29,7 +60,8 @@ const Support = () => {
               </svg>
               Subscribe
             </button>
-        </form>
+          </form>
+        )}
       </div>
     </section>
   );

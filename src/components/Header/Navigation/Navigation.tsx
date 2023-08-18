@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navigation = () => {
   return (
     <nav className="header__nav">
       <ul className="navigation">
-        <li className="navigation__link"><a href="#" className="navigation__anchor">Credit card</a></li>
-        <li className="navigation__link"><a href="#" className="navigation__anchor anchor__active">Product</a></li>
-        <li className="navigation__link"><a href="#" className="navigation__anchor ">Account</a></li>
-        <li className="navigation__link"><a href="#" className="navigation__anchor anchor__active">Resources</a>
+        <li className="navigation__link"><Link to="/loan" className="navigation__anchor">Credit card</Link></li>
+        <li className="navigation__link"><Link to="/" className="navigation__anchor anchor__active">Product</Link></li>
+        <li className="navigation__link"><Link to="/" className="navigation__anchor ">Account</Link></li>
+        <li className="navigation__link"><Link to="/" className="navigation__anchor anchor__active">Resources</Link>
         </li>
       </ul>
     </nav>

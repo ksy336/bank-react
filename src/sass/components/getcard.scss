@@ -1,0 +1,15 @@
+.get-card-container {
+  margin-top: 96px;
+}
+
+.deacription-to-card {
+  color: #000;
+  text-align: center;
+  font-family: Ubuntu, sans-serif;
+  @include font($size: 30px, $height: 147%, $weight: 700);
+}
+
+.steps-cards {
+  display: flex;
+  justify-content: space-between;
+}

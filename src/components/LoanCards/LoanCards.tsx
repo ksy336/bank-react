@@ -28,12 +28,12 @@ const LoanCards = () => {
             </div>
           </article>
         <article className="two-cards">
-          <div className="block-first">
+          <div className="block-first__long">
             <img src={bag} alt="icon" />
             <div className="text-loaning">Up to 12 months</div>
             <div className="text-description">No percent. For equipment, clothes and other purchases in installments</div>
           </div>
-          <div className="block-second">
+          <div className="block-second__long">
             <img src={credit} alt="icon" />
             <div className="text-loaning">Convenient deposit and withdrawal</div>
             <div className="text-description">At any ATM. Top up your credit card for free with cash or transfer from other cards</div>

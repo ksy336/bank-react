@@ -6,7 +6,7 @@ const CardBlock = () => {
   return (
     <div className="wrapper card-block__wrapper">
       <section className="card-block__loan">
-        <div className="layout-2-column">
+        <div className="layout-columns">
           <div className="first-column">
             <p className="loaning__text">Platinum digital credit card</p>
             <p className="loaning__description">Our best credit card. Suitable for everyday spending and shopping.
@@ -28,7 +28,7 @@ const CardBlock = () => {
             <Button>Apply for card</Button>
           </div>
           <div className="second-column">
-            <img src={card} alt="card" />
+            <img src={card} alt="card"  />
           </div>
         </div>
       </section>

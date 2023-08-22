@@ -19,7 +19,7 @@ const FormCard = ({scrollTo}) => {
             <div className="block-amount">
               <h5 className="select-amount">Select amount</h5>
               <div className="one-hundred-money">150 000</div>
-              <Input
+              <input
                 className="range-input"
                 type="range" min="15 000"
                 max="600 000"

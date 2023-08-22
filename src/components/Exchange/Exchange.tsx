@@ -8,17 +8,16 @@ const Exchange = () => {
 
   useEffect(() => {
     executeApiRequest();
-    setInterval(executeApiRequest,900000);
+    const interval  = setInterval(executeApiRequest,900000);
+    return () => {
+      clearInterval(interval);
+    }
   },[]);
 
   const executeApiRequest = async () => {
     try {
       const results = await homeApi.getCurrencies();
       setCurrencies(results);
-      console.log(results)
-      // for(let i = 0; i < currencyNums.length; i++) {
-      //   currencyNums[i].textContent = Number(results[i]).toFixed(2);
-      // }
     } catch (error) {
       console.error(error);
     }

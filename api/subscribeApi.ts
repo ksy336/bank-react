@@ -3,7 +3,6 @@ const SWAGGER_URL = import.meta.env.VITE_REACT_APP_SWAGGER_URL;
 
 class SubscribeApi {
   async sendSubscription(email) {
-    console.log(email);
     const options = {
       headers: {
         Accept: "*/*",

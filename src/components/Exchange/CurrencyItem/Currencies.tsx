@@ -9,13 +9,13 @@ const Currencies = ({ currencies }: CurrencyProp) => {
   const getTuples = () => {
     let tuple = [];
     let result = [];
-    for(let i = 0; i < currencies.length; i++) {
-      tuple.push(currencies[i]);
+    currencies.forEach((currency) => {
+      tuple.push(currency);
       if (tuple.length === 2) {
         result.push(tuple);
         tuple = [];
       }
-    }
+    })
     return result;
   }
 

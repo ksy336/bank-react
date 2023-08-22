@@ -9,29 +9,39 @@ import prescoringApi from '../../../api/prescoringApi';
 
 const PrescoringForm = ({amount}: number) => {
   const {handleSubmit, register, reset, formState: {errors}} = useForm({mode: "onChange"});
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [middleName, setMiddleName] = useState("");
-  const [term, setTerm] = useState("");
-  const [mail, setMail] = useState("");
-  const [birthdate,setBirthdate] = useState("");
-  const [passportSeries, setPassportSeries] = useState("");
-  const [passportNumber, setPassportNumber] = useState("");
+  const [dataForm, setDataForm] = useState({
+    name: "",
+    lastName: "",
+    middleName: "",
+    term: "",
+    mail: "",
+    birthdate: "",
+    passportSeries: "",
+    passportNumber: "",
+  });
+  // const [name, setName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [middleName, setMiddleName] = useState("");
+  // const [term, setTerm] = useState("");
+  // const [mail, setMail] = useState("");
+  // const [birthdate,setBirthdate] = useState("");
+  // const [passportSeries, setPassportSeries] = useState("");
+  // const [passportNumber, setPassportNumber] = useState("");
 
   const formSubmitHandlePrescoring = async () => {
     try {
       await prescoringApi.sendFormData({
         "amount": amount,
-        "term": term,
-        "firstName": name,
-        "lastName": lastName,
-        "middleName": middleName,
-        "email": mail,
-        "birthdate": birthdate,
-        "passportSeries": passportSeries,
-        "passportNumber": passportNumber
+        "term": dataForm.term,
+        "firstName": dataForm.name,
+        "lastName": dataForm.lastName,
+        "middleName": dataForm.middleName,
+        "email": dataForm.mail,
+        "birthdate": dataForm.birthdate,
+        "passportSeries": dataForm.passportSeries,
+        "passportNumber": dataForm.passportNumber
       });
-
+      reset()
     } catch(e) {
       console.warn(e);
       throw new Error(e);
@@ -42,24 +52,38 @@ const PrescoringForm = ({amount}: number) => {
   return (
     <form className="form-loan" onSubmit={handleSubmit(formSubmitHandlePrescoring)}>
       <div className="first-block-form">
-        <div className="form-block">
-          <div className="label-block">
-            <label>Your last name </label>
-            <span><img src={star} alt="star" /></span>
-          </div>
-          <input
-            className={`${errors?.lastName ? "input-prescoring error-text" : "input-prescoring"}`}
-            type="text"
-            placeholder="For Example Doe"
-            {...register("lastName", {
-              min: 1,
-              required: "Enter your last name",
-              onChange: (e: ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)
-            })} />
-          {/*{!errors?.lastName && <span className="success-check"><img src={success} alt="success" /></span>}*/}
-          {/*{errors?.lastName && <span className="error-check"><img src={error} alt="success" /></span>}*/}
+        <Input
+          type="text"
+          defaultValue=""
+          placeholder="For Example Doe"
+          // onChange={(e: ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)}
+          label="Your last name"
+          className={`${errors?.lastName ? "input-prescoring error-text" : "input-prescoring"}`}
+          {...register("lastName", {
+           min: 1,
+           required: "Enter your last name",
+            onChange: (e: ChangeEvent<HTMLInputElement>) => setDataForm((prev) => ({...prev, lastName: e.target.value}))
+          })}
+        />
           {errors?.lastName && <div className="error-description">{errors?.lastName?.message}</div>}
-        </div>
+        {/*<div className="form-block">*/}
+        {/*  <div className="label-block">*/}
+        {/*    <label>Your last name </label>*/}
+        {/*    <span><img src={star} alt="star" /></span>*/}
+        {/*  </div>*/}
+        {/*  <input*/}
+        {/*    className={`${errors?.lastName ? "input-prescoring error-text" : "input-prescoring"}`}*/}
+        {/*    type="text"*/}
+        {/*    placeholder="For Example Doe"*/}
+        {/*    {...register("lastName", {*/}
+        {/*      min: 1,*/}
+        {/*      required: "Enter your last name",*/}
+        {/*      onChange: (e: ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)*/}
+        {/*    })} />*/}
+        {/*  /!*{!errors?.lastName && <span className="success-check"><img src={success} alt="success" /></span>}*!/*/}
+        {/*  /!*{errors?.lastName && <span className="error-check"><img src={error} alt="success" /></span>}*!/*/}
+        {/*  {errors?.lastName && <div className="error-description">{errors?.lastName?.message}</div>}*/}
+        {/*</div>*/}
         <div className="form-block">
           <div className="label-block">
             <label>Your first name </label>
@@ -72,7 +96,7 @@ const PrescoringForm = ({amount}: number) => {
             {...register("name", {
               min: 2,
               required: "Enter your first name",
-              onChange: (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)
+              onChange: (e: ChangeEvent<HTMLInputElement>) => setDataForm((prev) => ({...prev, name: e.target.value}))
             })} />
           {errors?.name && <div className="error-description">{errors?.name?.message}</div>}
         </div>
@@ -86,7 +110,7 @@ const PrescoringForm = ({amount}: number) => {
             placeholder="For Example Victorovich"
             {...register("middle", {
               required: false,
-              onChange: (e: ChangeEvent<HTMLInputElement>) => setMiddleName(e.target.value)
+              onChange: (e: ChangeEvent<HTMLInputElement>) => setDataForm((prev) => ({...prev, middleName: e.target.value}))
             })} />
         </div>
         <div className="form-block">
@@ -95,12 +119,11 @@ const PrescoringForm = ({amount}: number) => {
           </div>
           <select
             className="input-prescoring"
-            defaultValue="6 month"
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setTerm(e.target.value)}>
-            <option>6 month</option>
-            <option>12 months</option>
-            <option value="">18 month</option>
-            <option value="">24 month</option>
+            defaultValue="6 month">
+            <option  onChange={(e: ChangeEvent<HTMLInputElement>) => setDataForm((prev) => ({...prev, term: e.target.value}))}>6 month</option>
+            <option  onChange={(e: ChangeEvent<HTMLInputElement>) => setDataForm((prev) => ({...prev, term: e.target.value}))}>12 months</option>
+            <option value=""  onChange={(e: ChangeEvent<HTMLInputElement>) => setDataForm((prev) => ({...prev, term: e.target.value}))}>18 month</option>
+            <option value=""  onChange={(e: ChangeEvent<HTMLInputElement>) => setDataForm((prev) => ({...prev, term: e.target.value}))}>24 month</option>
           </select>
         </div>
       </div>
@@ -119,7 +142,7 @@ const PrescoringForm = ({amount}: number) => {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                 message: "Incorrect email address"
               },
-              onChange: (e: ChangeEvent<HTMLInputElement>) => setMail(e.target.value)
+              onChange: (e: ChangeEvent<HTMLInputElement>) => setDataForm((prev) => ({...prev, mail: e.target.value}))
             })}
           />
           {errors?.email && <div className="error-description">{errors?.email?.message}</div>}
@@ -136,7 +159,7 @@ const PrescoringForm = ({amount}: number) => {
             {...register("birthdate", {
               // min: 18,
               required: "Incorrect date of birth",
-              onChange: (e: ChangeEvent<HTMLInputElement>) => setBirthdate(e.target.value)
+              onChange: (e: ChangeEvent<HTMLInputElement>) => setDataForm((prev) => ({...prev, birthdate: e.target.value}))
             })}
           />
           {errors?.birthdate && <div className="error-description">{errors?.birthdate?.message}</div>}
@@ -154,7 +177,7 @@ const PrescoringForm = ({amount}: number) => {
               // valueAsNumber: true,
               // validate: (value) => value === 4,
               required: "The series must be 4 digits",
-              onChange: (e: ChangeEvent<HTMLInputElement>) => setPassportSeries(e.target.value)
+              onChange: (e: ChangeEvent<HTMLInputElement>) => setDataForm((prev) => ({...prev, passportSeries: e.target.value}))
             })} />
           {errors?.series && <div className="error-description">{errors?.series?.message}</div>}
         </div>
@@ -172,7 +195,7 @@ const PrescoringForm = ({amount}: number) => {
               // validate: (value) => value === 6,
               // max: 6,
               required: "The series must be 6 digits",
-              onChange: (e: ChangeEvent<HTMLInputElement>) => setPassportNumber(e.target.value)
+              onChange: (e: ChangeEvent<HTMLInputElement>) => setDataForm((prev) => ({...prev, passportNumber: e.target.value}))
             })} />
           {errors?.number && <div className="error-description">{errors?.number?.message}</div>}
         </div>

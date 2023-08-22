@@ -4,7 +4,7 @@ import subscribeApi from '../../../api/subscribeApi';
 const Support = () => {
   const [email, setEmail] = useState({ });
   const [subscriptionText, setSubscriptionText] = useState("");
-  console.log(email)
+
   useEffect(() => {
     const textData = localStorage.getItem("text") as string;
     if (textData) setSubscriptionText(textData);
@@ -16,6 +16,7 @@ const Support = () => {
 
   const handleSubmit = async (e:ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubscriptionText("You are already subscribed to the bank's newsletter");
     try {
        await subscribeApi.sendSubscription({
         "email": email

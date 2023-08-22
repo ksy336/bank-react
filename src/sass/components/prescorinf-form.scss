@@ -37,7 +37,7 @@
 
 .input-prescoring {
   width: 297px;
-  height: 40px;
+  //height: 40px;
   border-radius: 6px;
   border: 1px solid rgba(128, 128, 128, 0.20);
   background: #F9F5E3;
@@ -49,13 +49,14 @@
   font-style: normal;
   font-weight: 500;
   //background: url(../../assets/icons/) no-repeat scroll 7px 7px;
-  padding-left:30px
+  //padding-left:30px
 }
 
 .input-prescoring::placeholder {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  padding-left: 16px;
 }
 
 .input-prescoring.error-text {

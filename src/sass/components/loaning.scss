@@ -1,0 +1,74 @@
+.layout-columns {
+  display: flex;
+}
+
+.card-block__loan {
+  border-radius: 28.8px;
+  background: linear-gradient(180deg, rgba(203, 213, 224, 0.62) 0%, rgba(254, 235, 200, 0.56) 100%);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.20), 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
+  height: 390px;
+  padding: 48px 32px;
+  margin-top: 27px;
+}
+
+.loaning__text {
+  color: $color-button-text;
+  font-family: Ubuntu, sans-serif;
+  @include font($size: 48px, $height: 100%, $weight: 700);
+  letter-spacing: 0.96px;
+  margin: 0;
+  margin-bottom: 48px;
+}
+
+.loaning__description {
+  color: $footer-text;
+  font-family: Ubuntu, sans-serif;
+  @include font($size: 16px, $height: 112%, $weight: 500);
+  letter-spacing: 0.32px;
+  margin: 0;
+  width: 515px;
+  margin-bottom: 32px;
+  @include media-mobile {
+    width: 300px;
+  }
+}
+
+.block-info_loaning {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.first-column {
+  flex-basis: 60%;
+}
+
+.second-column {
+  transform: rotate(10deg);
+  flex-basis: 40%;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+.second-column img {
+  width: 100%;
+  height: auto;
+  max-width: 380px;
+  max-height: 226px;
+}
+
+.info-item {
+  color: #3D3D3D;
+  font-family: Ubuntu, sans-serif;
+  @include font($size: 20px, $height: 112%, $weight: 700);
+  letter-spacing: 0.4px;
+}
+
+.percent-item {
+  color: #3D3D3D;
+  font-family: Ubuntu, sans-serif;
+  @include font($size: 16px, $height: 112%, $weight: 500);
+  letter-spacing: 0.32px;
+  margin-top: 9px;
+  margin-bottom: 44px;
+}

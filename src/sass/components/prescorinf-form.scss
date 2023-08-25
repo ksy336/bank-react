@@ -1,0 +1,89 @@
+.form-loan {
+  width: 100%;
+}
+.first-block-form,
+.second-block-form {
+  display: flex;
+  align-items: center;
+}
+
+.form-block {
+  display: flex;
+  flex-direction: column;
+  margin-right: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.form-block:last-child {
+  margin-right: 0px;
+}
+
+.form-block label {
+  color: #1A202C;
+  font-family: Ubuntu, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 16px */
+  margin-bottom: 8px;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.label-block {
+  display: flex;
+  align-items: flex-start;
+}
+
+.input-prescoring {
+  width: 297px;
+  //height: 40px;
+  border-radius: 6px;
+  border: 1px solid rgba(128, 128, 128, 0.20);
+  background: #F9F5E3;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  color: #000;
+  font-family: Ubuntu, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  //background: url(../../assets/icons/) no-repeat scroll 7px 7px;
+  //padding-left:30px
+}
+
+.input-prescoring::placeholder {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-left: 16px;
+}
+
+.input-prescoring.error-text {
+  border-radius: 6px;
+  border: 2px solid #FF5631;
+  background: #F9F5E3;
+}
+
+.error-description {
+  color: #FF5631;
+  font-family: Ubuntu, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.second-block-form {
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.button-prescoring {
+  display: flex;
+  justify-content: flex-end;
+}
+.success-check img,
+.error-check img {
+  width: 24px;
+  height: 24px;
+}

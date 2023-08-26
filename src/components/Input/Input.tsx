@@ -3,15 +3,15 @@ import star from '../../assets/icons/_.svg';
 
 export type InputType = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  // type: string;
   type: 'text' | 'number' | 'email' | 'password' | 'date';
   label: string;
-  defaultValue: string | number;
   className: string;
   placeholder: string;
+  name: string;
+  error: any;
 }
 
-const Input = ({onChange, type, defaultValue, label, className, placeholder}) => {
+const Input = ({onChange, type, label, className, placeholder, name, error}: InputType) => {
   return (
     <div className="form-block">
       <div className="label-block">
@@ -21,11 +21,11 @@ const Input = ({onChange, type, defaultValue, label, className, placeholder}) =>
       <input
         className={className}
         type={type}
+        name={name}
         placeholder={placeholder}
         onChange={onChange}
-        defaultValue={defaultValue}
-        // value={value}
         />
+      {error && <div className="error-description">{error?.message}</div>}
     </div>
   )
 }

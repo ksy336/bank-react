@@ -6,6 +6,7 @@ import { Controller, useForm } from 'react-hook-form';
 // import success from '../../assets/icons/Check_fill@3x.png';
 // import error from '../../assets/icons/Close_round_fill@3x.png';
 import prescoringApi from '../../../api/prescoringApi';
+import Select from '../Select/Select';
 
 const PrescoringForm = ({amount}: number) => {
   const {handleSubmit, register, reset, control, formState: {errors}} = useForm({mode: "onChange"});
@@ -42,7 +43,7 @@ const PrescoringForm = ({amount}: number) => {
     }
     reset()
   }
-  console.log(dataForm.lastName);
+
   return (
     <form className="form-loan" onSubmit={handleSubmit(formSubmitHandlePrescoring)}>
       <div className="first-block-form">
@@ -101,19 +102,20 @@ const PrescoringForm = ({amount}: number) => {
             />
           )}
         />
-        <div className="form-block">
-          <div className="label-block">
-            <label>Select term </label>
-          </div>
-          <select
-            className="input-prescoring"
-            defaultValue="6 month">
-            <option  onChange={(e: ChangeEvent<HTMLInputElement>) => setDataForm((prev) => ({...prev, term: e.target.value}))}>6 month</option>
-            <option  onChange={(e: ChangeEvent<HTMLInputElement>) => setDataForm((prev) => ({...prev, term: e.target.value}))}>12 months</option>
-            <option value=""  onChange={(e: ChangeEvent<HTMLInputElement>) => setDataForm((prev) => ({...prev, term: e.target.value}))}>18 month</option>
-            <option value=""  onChange={(e: ChangeEvent<HTMLInputElement>) => setDataForm((prev) => ({...prev, term: e.target.value}))}>24 month</option>
-          </select>
-        </div>
+        <Controller
+          name="birthdate"
+          control={control}
+          rules={{ required: false}}
+          render={({ field: { onChange, name }, fieldState: { error } }) =>(
+            <Select
+              className="input-prescoring"
+              defaultValue="6 month"
+              onChange={onChange}
+              name={name}
+              label="Select term"
+            />
+          )}
+        />
       </div>
       <div className="second-block-form">
         <Controller

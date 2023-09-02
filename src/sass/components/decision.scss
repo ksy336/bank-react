@@ -1,0 +1,23 @@
+.decision-block {
+  border-radius: 10px;
+  border: 1px solid #5B35D5;
+  background: rgba(217, 217, 217, 0.00);
+  padding-top: 24px;
+  padding-bottom: 34px;
+}
+
+.decision-text {
+  color: $color-header;
+  text-align: center;
+  font-family: Ubuntu, sans-serif;
+  @include font($size: 30px, $height: 112%, $weight: 700);
+  letter-spacing: 0.6px;
+  margin-bottom: 32px;
+}
+
+.decision-description {
+  color: #4F5665;
+  text-align: center;
+  font-family: Ubuntu, sans-serif;
+  @include font($size: 16px, $height: 112%, $weight: 500);
+}

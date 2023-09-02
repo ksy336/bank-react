@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import Header from '../../components/Header/Header';
 import CardBlock from '../../components/CardBlock/CardBlock';
 import Accordion from '../../components/Accordion/Accordion';
@@ -6,10 +6,14 @@ import LoanCards from '../../components/LoanCards/LoanCards';
 import FormCard from '../../components/FormCard/FormCard';
 import Footer from '../../components/Footer/Footer';
 import GetCard from '../../components/GetCard/GetCard';
+import LoaningCards from '../../components/LoaningCards/LoaningCards';
+import { ShowSelectContext } from '../../../store/showSelectContext/showSelectContext';
+import Decision from '../../components/Decision/Decision';
 
 const Loan = () => {
   const scrollTo = useRef();
-  console.log(scrollTo)
+   const {showSelect, isSent} = useContext(ShowSelectContext);
+
   return (
     <>
       <Header />
@@ -18,7 +22,8 @@ const Loan = () => {
         <Accordion />
         <LoanCards />
         <GetCard />
-        <FormCard scrollTo={scrollTo} />
+        {!showSelect ? (<FormCard scrollTo={scrollTo} />) :  (<LoaningCards /> )}
+        {!isSent ? (<LoaningCards /> ) : (<Decision /> )}
         <Footer />
       </main>
     </>

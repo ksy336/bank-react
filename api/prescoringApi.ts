@@ -12,7 +12,6 @@ class PrescoringApi {
         },
       }
       const response = await axios.post(`${SWAGGER_URL}/application`, JSON.stringify(prescoringData), options);
-      console.log(response);
       if(!response) throw  new Error("Fetching data failed");
       const data = await response.data;
 

@@ -3,4 +3,5 @@ export type ButtonType = {
   type: string;
   children: React.ReactNode;
   disabled: boolean;
+  className: string;
 }

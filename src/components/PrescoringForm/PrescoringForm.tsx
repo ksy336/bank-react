@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useContext, useState } from 'react';
 import star from "../../assets/icons/_.svg"
 import Button from '../Button/Button';
 import Input from '../Input/Input';
@@ -7,22 +7,15 @@ import { Controller, useForm } from 'react-hook-form';
 // import error from '../../assets/icons/Close_round_fill@3x.png';
 import prescoringApi from '../../../api/prescoringApi';
 import Select from '../Select/Select';
+import {ShowSelectContext} from '../../../store/showSelectContext/showSelectContext';
 
 const PrescoringForm = ({amount}: number) => {
-  const {handleSubmit, register, reset, control, formState: {errors}} = useForm({mode: "onChange"});
-  const [dataForm, setDataForm] = useState({
-    name: "",
-    lastName: "",
-    middleName: "",
-    term: "",
-    mail: "",
-    birthdate: "",
-    passportSeries: "",
-    passportNumber: "",
-  });
+  const {handleSubmit, reset, control, formState: {errors}} = useForm({mode: "onChange"});
+  const {setShowSelect} = useContext(ShowSelectContext);
 
   const formSubmitHandlePrescoring = async (formData) => {
     console.log(formData)
+    setShowSelect(true);
     try {
       // await prescoringApi.sendFormData({
       //   "amount": amount,
@@ -36,7 +29,8 @@ const PrescoringForm = ({amount}: number) => {
       //   "passportNumber": dataForm.passportNumber
       // });
       await prescoringApi.sendFormData({...formData, amount});
-      reset()
+      reset();
+      setShowSelect(true);
     } catch(e) {
       console.warn(e);
       throw new Error(e);

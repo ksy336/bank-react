@@ -12,6 +12,7 @@ const LoaningCard = ({card}: CardProps) => {
   const {setIsSent, setShowSelect} = useContext(ShowSelectContext);
 
   const selectHandler = async () => {
+    console.log(card);
     setIsSent(true);
     // setShowSelect(false);
     try {

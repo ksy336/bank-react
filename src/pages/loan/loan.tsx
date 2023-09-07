@@ -16,7 +16,7 @@ const Loan = () => {
 
   return (
     <>
-      <Header />
+      {/*<Header />*/}
       <main className="main">
         <CardBlock scrollTo={scrollTo} />
         <Accordion />
@@ -24,7 +24,7 @@ const Loan = () => {
         <GetCard />
         {!showSelect ? (<FormCard scrollTo={scrollTo} />) :  (<LoaningCards /> )}
         {!isSent ? (<LoaningCards /> ) : (<Decision /> )}
-        <Footer />
+        {/*<Footer />*/}
       </main>
     </>
   );

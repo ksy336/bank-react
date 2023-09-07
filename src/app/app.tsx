@@ -1,18 +1,13 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from '../pages/home/home';
-import Loan from '../pages/loan/loan';
-import styles from './app.module.scss';
-import NotFound from '../pages/404/NotFound';
+import React from 'react';
+import Footer from '../components/Footer/Footer';
+import AppRoutes from '../routes/app-routes';
+import Header from '../components/Header/Header';
 
 export function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/loan' element={<Loan />} />
-        <Route path='/404' element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <AppRoutes />
+      </>
   );
 }
 

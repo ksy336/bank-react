@@ -17,7 +17,36 @@ export const apiSlice = createApi({
   endpoints: (build) => ({
     sendApplicationChoice: build.mutation({
       query: (body) => ({
-        url: 'application/apply',
+        url: '/application/apply',
+        method: 'POST',
+        body
+      })
+    }),
+    sendFormScoring: build.mutation({
+      query: (body, appId) => ({
+        url: `/application/registration/${appId}`,
+        method: 'POST',
+        body
+      })
+    }),
+    getPaymentSchedule: build.query({
+      query: (appId) => `/admin/application/${appId}`
+    }),
+    sendDocument: build.mutation({
+      query: (appId) => ({
+        url: `/document/${appId}`,
+        method: 'POST',
+      })
+    }),
+    sendSigning: build.mutation({
+        query: (appId) => ({
+          url: `/document/${appId}/sign`,
+          method: 'POST',
+        })
+      }),
+    sendCode: build.mutation({
+      query: (appId, body) => ({
+        url: `/document/${appId}/sign/code`,
         method: 'POST',
         body
       })

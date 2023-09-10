@@ -8,8 +8,8 @@ export const apiSlice = createApi({
     baseUrl: `${API_URL}`,
     prepareHeaders: (headers => {
       headers.set('accept', '*/*'),
-        headers.set('accept', 'application/json'),
-        headers.set('Access-Control-Allow-Origin', '*')
+        headers.set('accept', 'application/json')
+        // headers.set('Access-Control-Allow-Origin', '*')
       return headers;
     })
   } as FetchBaseQueryArgs),
@@ -54,4 +54,4 @@ export const apiSlice = createApi({
   })
 });
 
-export const {useSendApplicationChoiceMutation} = apiSlice;
+export const {useSendApplicationChoiceMutation, useSendFormScoringMutation, useGetPaymentScheduleQuery, useSendDocumentMutation, useSendSigningMutation, useSendCodeMutation } = apiSlice;

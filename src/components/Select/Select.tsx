@@ -4,10 +4,12 @@ export type SelectType = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   label: string;
   className: string;
-  defaultValue: string;
+  defaultValue?: string;
+  error?: any;
+  options: string[];
 }
 
-const Select = ({onChange, defaultValue, label, className}: SelectType) => {
+const Select = ({onChange, defaultValue, label, className, error, options}: SelectType) => {
   return (
     <div className="form-block">
       <div className="label-block">
@@ -16,11 +18,11 @@ const Select = ({onChange, defaultValue, label, className}: SelectType) => {
       <select
         className={className}
         defaultValue={defaultValue}>
-        <option onChange={onChange}>6 months</option>
-        <option onChange={onChange}>12 months</option>
-        <option onChange={onChange}>18 months</option>
-        <option onChange={onChange}>24 months</option>
+        {options.map((value) => (
+          <option onChange={onChange}>{value}</option>
+        ))}
       </select>
+      {error && <div className="error-description">{error?.message}</div>}
     </div>
   )
 }

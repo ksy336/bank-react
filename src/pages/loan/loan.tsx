@@ -7,24 +7,27 @@ import FormCard from '../../components/FormCard/FormCard';
 import Footer from '../../components/Footer/Footer';
 import GetCard from '../../components/GetCard/GetCard';
 import LoaningCards from '../../components/LoaningCards/LoaningCards';
-import { ShowSelectContext } from '../../../store/showSelectContext/showSelectContext';
+import { StepContext } from '../../../store/FormsContext/stepContext';
 import Decision from '../../components/Decision/Decision';
 
 const Loan = () => {
   const scrollTo = useRef();
-   const {showSelect, isSent} = useContext(ShowSelectContext);
+  const {step} = useContext(StepContext);
+
+  const stepMap = {
+    form: <FormCard scrollTo={scrollTo} />,
+    loaningCards: <LoaningCards />,
+    decision: <Decision />,
+  }
 
   return (
     <>
-      {/*<Header />*/}
       <main className="main">
         <CardBlock scrollTo={scrollTo} />
         <Accordion />
         <LoanCards />
         <GetCard />
-        {!showSelect ? (<FormCard scrollTo={scrollTo} />) :  (<LoaningCards /> )}
-        {!isSent ? (<LoaningCards /> ) : (<Decision /> )}
-        {/*<Footer />*/}
+        {stepMap[step]}
       </main>
     </>
   );

@@ -7,15 +7,15 @@ import { Controller, useForm } from 'react-hook-form';
 // import error from '../../assets/icons/Close_round_fill@3x.png';
 import prescoringApi from '../../../api/prescoringApi';
 import Select from '../Select/Select';
-import {ShowSelectContext} from '../../../store/showSelectContext/showSelectContext';
+import {StepContext} from '../../../store/FormsContext/stepContext';
 
 const PrescoringForm = ({amount}: number) => {
   const {handleSubmit, reset, control, formState: {errors}} = useForm({mode: "onChange"});
-  const {setShowSelect} = useContext(ShowSelectContext);
+  const {setStep} = useContext(StepContext);
 
   const formSubmitHandlePrescoring = async (formData) => {
     console.log(formData)
-    setShowSelect(true);
+    setStep("loaningCards");
     try {
       // await prescoringApi.sendFormData({
       //   "amount": amount,
@@ -30,7 +30,7 @@ const PrescoringForm = ({amount}: number) => {
       // });
       await prescoringApi.sendFormData({...formData, amount});
       reset();
-      setShowSelect(true);
+      setStep("loaningCards");
     } catch(e) {
       console.warn(e);
       throw new Error(e);
@@ -107,6 +107,7 @@ const PrescoringForm = ({amount}: number) => {
               onChange={onChange}
               name={name}
               label="Select term"
+              options={["6 months", "12 months", "18 months", "24 months"]}
             />
           )}
         />

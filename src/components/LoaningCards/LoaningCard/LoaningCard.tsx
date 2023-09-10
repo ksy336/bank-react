@@ -5,15 +5,15 @@ import gift from "../../../assets/img/SurpriseImage 1.png";
 import Button from '../../Button/Button';
 import { CardProps } from '../LoaningCards-type';
 import {useSendApplicationChoiceMutation} from "../../../../store/api/apiSlice";
-import { ShowSelectContext } from '../../../../store/showSelectContext/showSelectContext';
+import { StepContext } from '../../../../store/FormsContext/stepContext';
 
 const LoaningCard = ({card}: CardProps) => {
   const [sendApplication, {isLoading, isError}] = useSendApplicationChoiceMutation();
-  const {setIsSent, setShowSelect} = useContext(ShowSelectContext);
+  const {setStep} = useContext(StepContext);
 
   const selectHandler = async () => {
     console.log(card);
-    setIsSent(true);
+    setStep("decision");
     // setShowSelect(false);
     try {
       await sendApplication(card).unwrap();

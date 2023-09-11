@@ -12,18 +12,15 @@ const LoaningCard = ({card}: CardProps) => {
   const {setStep} = useContext(StepContext);
 
   const selectHandler = async () => {
-    console.log(card);
     setStep("decision");
-    // setShowSelect(false);
     try {
       await sendApplication(card).unwrap();
-      // setIsSent(true);
-      // setShowSelect(true);
     } catch (e) {
       console.warn(e);
       throw new Error(e);
     }
   }
+  if (isLoading) return  <div className="customize-text">Loading...</div>;
 
   return (
     <section className="card-loan-block">

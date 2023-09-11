@@ -15,7 +15,7 @@ const Loan = () => {
   const {step} = useContext(StepContext);
 
   const stepMap = {
-    form: <FormCard scrollTo={scrollTo} />,
+    form: <FormCard />,
     loaningCards: <LoaningCards />,
     decision: <Decision />,
   }
@@ -26,7 +26,7 @@ const Loan = () => {
         <CardBlock scrollTo={scrollTo} />
         <Accordion />
         <LoanCards />
-        <GetCard />
+        <GetCard scrollTo={scrollTo} />
         {stepMap[step]}
       </main>
     </>

@@ -7,24 +7,36 @@ export type ContextProps = {
   children: React.ReactNode;
 }
 
-export const SoringStepContext = createContext<ShowSelectType | null>(null);
+export const DocumentStepContext = createContext<ShowSelectType | null>(null);
 
-const ScoringContextProvider = ({children}: ContextProps) => {
-  const [scoringStep, setScoringStep] = useState("scoring");
+const DocumentContextProvider = ({children}: ContextProps) => {
+  const [documentStep, setDocumentStep] = useState("document");
+
+  const [codeStep, setCodeStep] = useState("code");
 
   useLayoutEffect(() => {
-    const step = localStorage.getItem("scoringStep");
-    if (step) setScoringStep(step);
+    const step = localStorage.getItem("document");
+    if (step) setDocumentStep(step);
   },[]);
 
   useEffect(()=> {
-    localStorage.setItem("scoringStep", scoringStep);
-  }, [scoringStep]);
+    localStorage.setItem("document", documentStep);
+  }, [documentStep]);
+
+
+  useLayoutEffect(() => {
+    const step = localStorage.getItem("code");
+    if (step) setCodeStep(step);
+  },[]);
+
+  useEffect(()=> {
+    localStorage.setItem("code", codeStep);
+  }, [codeStep]);
 
   return (
-    <SoringStepContext.Provider value={{scoringStep, setScoringStep}}>
+    <DocumentStepContext.Provider value={{documentStep, setDocumentStep, codeStep, setCodeStep}}>
       {children}
-    </SoringStepContext.Provider>
+    </DocumentStepContext.Provider>
   )
 }
-export default ScoringContextProvider;
+export default DocumentContextProvider;

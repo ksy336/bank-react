@@ -1,23 +1,26 @@
 import { Document, Page, pdfjs  } from "react-pdf";
 import pdfFile from '/public/credit-card-offer.pdf';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '../../../components/Button/Button';
 import {useSendSigningMutation} from '../../../../store/api/apiSlice';
 import { useParams } from 'react-router-dom';
+import { DocumentStepContext } from '../../../../store/FormsContext/documentContext';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const FileForSigning = () => {
   const [sendSigning, {isLoading}] = useSendSigningMutation();
   const [isValid, setIsValid] = useState(false);
   const {id} = useParams();
-  const sendPDFAgreeDataHandler = async () => {
+  const {setDocumentStep} = useContext(DocumentStepContext);
+
+  const sendPDFAgreeDataHandler = async (event) => {
     event.preventDefault();
 
     if (isValid) {
-      // setPdfStep("result")
+      setDocumentStep("sentDocument")
       try {
         await sendSigning(id).unwrap();
-        // setScheduleStep("result")
+        setDocumentStep("sentDocument")
       } catch(e) {
         console.warn(e);
         throw new Error(e);

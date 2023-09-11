@@ -1,8 +1,11 @@
 import Button from '../Button/Button';
 import card from '../../assets/img/cardImage1 1.png';
-import React from 'react';
+import React, { useContext } from 'react';
+import { StepContext } from '../../../store/FormsContext/stepContext';
 
 const CardBlock = ({scrollTo}) => {
+  const {step} = useContext(StepContext);
+  
   const handleScrollToElement = () => {
     scrollTo.current?.scrollIntoView({behavior:'smooth'});
   }
@@ -29,7 +32,7 @@ const CardBlock = ({scrollTo}) => {
                 <div className="percent-item">Card service is free</div>
               </div>
             </article>
-            <Button onClick={handleScrollToElement}>Apply for card</Button>
+            <Button className="apply-for-card" onClick={handleScrollToElement}>Apply for card</Button>
           </div>
           <div className="second-column">
             <img src={card} alt="card"  />

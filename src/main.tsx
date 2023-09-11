@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from '../store/store';
 import ScoringContextProvider from '../store/FormsContext/scoringContext';
 import ScheduleContextProvider from '../store/FormsContext/scheduleContext';
+import DocumentContextProvider from '../store/FormsContext/documentContext';
 import "../src/sass/style.scss";
 
 const root = ReactDOM.createRoot(
@@ -15,7 +16,9 @@ root.render(
     <ContextProvider>
       <ScoringContextProvider>
         <ScheduleContextProvider>
-          <App />
+          <DocumentContextProvider>
+            <App />
+          </DocumentContextProvider>
         </ScheduleContextProvider>
       </ScoringContextProvider>
     </ContextProvider>

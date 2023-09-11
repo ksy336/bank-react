@@ -8,20 +8,7 @@ import Select from '../../../components/Select/Select';
 import Button from '../../../components/Button/Button';
 import { useSendFormScoringMutation } from '../../../../store/api/apiSlice';
 import { SoringStepContext } from '../../../../store/FormsContext/scoringContext';
-
-type FormScoring = {
-  "gender": string;
-  "maritalStatus": string;
-  "dependentAmount": number;
-  "passportIssueDate": string;
-  "passportIssueBranch": string;
-  "employmentStatus": string;
-  "employerINN": number;
-  "salary": number;
-  "position": string;
-  "workExperienceTotal": number;
-  "workExperienceCurrent": number;
-}
+import { FormScoring } from './Scoring-type';
 
 const Scoring = () => {
   const {handleSubmit, reset, control, formState: {errors}} = useForm<FormScoring>({mode: "onChange"});

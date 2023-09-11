@@ -1,0 +1,97 @@
+.input-code .error-text {
+
+}
+
+.code-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-code {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 1px solid #3182CE;
+  background: rgba(255, 255, 255, 0.00);
+  color: #000;
+  text-align: center;
+  font-family: Ubuntu, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 112%; /* 22.4px */
+  letter-spacing: 0.4px;
+}
+
+.first-sign {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.button-home {
+  color: var(--White, #FFF);
+  text-align: center;
+  font-feature-settings: 'salt' on, 'liga' off;
+  font-family: Ubuntu, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 112%; /* 17.92px */
+  letter-spacing: 0.32px;
+  display: flex;
+  padding: 8px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 16px;
+  background: var(--blue-3, #003CFF);
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(0.97);
+  }
+}
+
+.present-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.present-block >* {
+  margin-bottom: 32px;
+}
+
+.button-code-submit {
+  margin-top: 150px;
+}
+
+.apply-for-card {
+  display: flex;
+  padding: 8px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  background: var(--blue-3, #003CFF);
+  color: var(--White, #FFF);
+  text-align: center;
+  font-feature-settings: 'salt' on, 'liga' off;
+  font-family: Ubuntu, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 112%; /* 17.92px */
+  letter-spacing: 0.32px;
+  cursor: pointer;
+  border: none;
+
+  &:hover {
+    transform: scale(0.97);
+  }
+}

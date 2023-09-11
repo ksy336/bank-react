@@ -4,10 +4,10 @@ import star from '../../assets/icons/_.svg';
 export type InputType = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   type: 'text' | 'number' | 'email' | 'password' | 'date';
-  label: string;
+  label?: string;
   className: string;
   placeholder: string;
-  name: string;
+  name?: string;
   error: any;
 }
 

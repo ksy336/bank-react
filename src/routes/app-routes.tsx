@@ -12,10 +12,14 @@ import { useContext } from 'react';
 import { SoringStepContext } from '../../store/FormsContext/scoringContext';
 import ResultText from '../pages/loan/paymentSchedule/Components/ResultText';
 import { ScheduleStepContext } from '../../store/FormsContext/scheduleContext';
+import SentDocument from '../components/SentDocument/SentDocument';
+import  { DocumentStepContext } from '../../store/FormsContext/documentContext';
+import Present from '../components/PResent/Present';
 
 const AppRoutes = () => {
   const {scoringStep} = useContext(SoringStepContext);
   const {scheduleStep} = useContext(ScheduleStepContext);
+  const {documentStep, codeStep} = useContext(DocumentStepContext);
 
   const stepForm = {
     scoring:  <Route path=":id" element={<Scoring />} />,
@@ -25,6 +29,15 @@ const AppRoutes = () => {
   const stepDocument = {
     schedule: <Route path=":id/document" element={<PaymentSchedule />} />,
     result: <Route path=":id/document" element={<ResultText />} />,
+  }
+  const documentForm = {
+    document:  <Route path=":id/document/sign" element={<FileForSigning />} />,
+    sentDocument: <Route path=":id/document/sign" element={<SentDocument />} />
+  }
+
+  const codeForm = {
+    code: <Route path=":id/code" element={<CodePage />} />,
+    present: <Route path=":id/code" element={<Present />} />
   }
 
   return (
@@ -36,8 +49,8 @@ const AppRoutes = () => {
           <Route index element={<Loan />} />
           {stepForm[scoringStep]}
           {stepDocument[scheduleStep]}
-          <Route path=":id/document/sign" element={<FileForSigning />} />
-          <Route path=":id/code" element={CodePage} />
+          {documentForm[documentStep]}
+          {codeForm[codeStep]}
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,7 +1,6 @@
 import React from 'react';
 
-const ResultText = () => {
-  return (
+const ResultText = () => (
     <section className="wrapper">
       <article className="decision-block border-none">
         <div className="decision-text">Documents are formed</div>
@@ -9,6 +8,5 @@ const ResultText = () => {
       </article>
     </section>
   );
-};
 
 export default ResultText;

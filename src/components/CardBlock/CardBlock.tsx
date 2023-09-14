@@ -7,11 +7,17 @@ const CardBlock = ({scrollTo}) => {
   const {step} = useContext(StepContext);
   let buttonText = "Apply for card";
 
-  if(step === "form") buttonText = "Apply for card";
-
-  if(step === "loaningCards") buttonText = "Choose an offer";
-
-  if(step === "decision") buttonText = "Continue registration";
+  switch(step) {
+    case "form":
+      buttonText = "Apply for card";
+      break;
+    case "loaningCards":
+      buttonText = "Choose an offer";
+      break;
+    case "decision":
+      buttonText = "Continue registration";
+      break;
+  }
 
   const handleScrollToElement = () => {
     scrollTo.current?.scrollIntoView({behavior:'smooth'});

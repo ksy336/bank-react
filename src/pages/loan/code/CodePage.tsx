@@ -14,11 +14,9 @@ const CodePage = () => {
   const {id} = useParams();
 
   const handleCodeSubmit = async (formData) => {
-    console.log(formData)
     setCodeStep("present");
     try {
       await sendCode(formData, id).unwrap();
-      setCodeStep("present");
       reset();
     } catch(e) {
       console.warn(e);

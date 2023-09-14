@@ -17,11 +17,9 @@ const Scoring = () => {
   const {id} = useParams();
 
   const formSubmitHandleScoring = async (formData) => {
-    console.log(formData)
     setScoringStep("waitingDecision");
     try {
       await sendScoring(formData, id).unwrap();
-      setScoringStep("waitingDecision");
       reset();
     } catch(e) {
       console.warn(e);
@@ -46,7 +44,7 @@ const Scoring = () => {
               rules={{ required: "Select one of the options"}}
               render={({ field: { onChange, name, value }, fieldState: { error } }) =>(
                 <Select
-                  className={`${errors?.gender ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}`}
+                  className={errors?.gender ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}
                   value={value}
                   onChange={onChange}
                   // name={name}
@@ -63,7 +61,7 @@ const Scoring = () => {
               rules={{ required: "Select one of the options"}}
               render={({ field: { onChange, name, value }, fieldState: { error } }) =>(
                 <Select
-                  className={`${errors?.maritalStatus ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}`}
+                  className={errors?.maritalStatus ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}
                   onChange={onChange}
                   value={value}
                   name={name}
@@ -80,7 +78,7 @@ const Scoring = () => {
               rules={{ required: "Select one of the options"}}
               render={({ field: { onChange, name , value}, fieldState: { error } }) =>(
                 <Select
-                  className={`${errors?.dependentAmount ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}`}
+                  className={errors?.dependentAmount ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}
                   value={value}
                   onChange={onChange}
                   name={name}
@@ -100,7 +98,7 @@ const Scoring = () => {
                 <Input
                   type="date"
                   placeholder="Select Date and Time"
-                  className={`${errors?.passportIssueDate  ? "input-prescoring input-prescoring__max-long error-text" : "input-prescoring input-prescoring__max-long"}`}
+                  className={errors?.passportIssueDate  ? "input-prescoring input-prescoring__max-long error-text" : "input-prescoring input-prescoring__max-long"}
                   name={name}
                   label="Date of issue of the passport"
                   onChange={onChange}
@@ -115,7 +113,7 @@ const Scoring = () => {
               rules={{minLength: 6, maxLength: 6,  required: "The series must be 6 digits"}}
               render={({ field: { onChange, value, name }, fieldState: { error } }) =>(
                 <Input
-                  className={`${errors?.passportIssueBranch ? "input-prescoring input-prescoring__max-long error-text" : "input-prescoring input-prescoring__max-long"}`}
+                  className={errors?.passportIssueBranch ? "input-prescoring input-prescoring__max-long error-text" : "input-prescoring input-prescoring__max-long"}
                   type="number"
                   placeholder="000000"
                   onChange={onChange}
@@ -136,7 +134,7 @@ const Scoring = () => {
               rules={{ required: "Select one of the options"}}
               render={({ field: { onChange, name }, fieldState: { error } }) =>(
                 <Select
-                  className={`${errors?.employmentStatus ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}`}
+                  className={errors?.employmentStatus ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}
                   defaultValue="UNEMPLOYED"
                   onChange={onChange}
                   name={name}
@@ -152,7 +150,7 @@ const Scoring = () => {
               rules={{minLength: 12, maxLength: 12, required: "Department code must be 12 digits"}}
               render={({ field: { onChange, value, name }, fieldState: { error } }) =>(
                 <Input
-                  className={`${errors?.employerINN ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}`}
+                  className={errors?.employerINN ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}
                   type="number"
                   placeholder="000000000000"
                   onChange={onChange}
@@ -169,7 +167,7 @@ const Scoring = () => {
               rules={{required: "Enter your salary"}}
               render={({ field: { onChange, value, name }, fieldState: { error } }) =>(
                 <Input
-                  className={`${errors?.salary ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}`}
+                  className={errors?.salary ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}
                   type="number"
                   placeholder="For example 100 000"
                   onChange={onChange}
@@ -189,7 +187,7 @@ const Scoring = () => {
               rules={{ required: "Select one of the options"}}
               render={({ field: { onChange, name }, fieldState: { error } }) =>(
                 <Select
-                  className={`${errors?.position ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}`}
+                  className={errors?.position ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}
                   defaultValue="Worker"
                   onChange={onChange}
                   name={name}
@@ -205,7 +203,7 @@ const Scoring = () => {
               rules={{required: "Enter your work experience total"}}
               render={({ field: { onChange, value, name }, fieldState: { error } }) =>(
                 <Input
-                  className={`${errors?.workExperienceTotal ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}`}
+                  className={errors?.workExperienceTotal ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}
                   type="number"
                   placeholder="For example 10"
                   onChange={onChange}
@@ -222,7 +220,7 @@ const Scoring = () => {
               rules={{required: "Enter your work experience current"}}
               render={({ field: { onChange, value, name }, fieldState: { error } }) =>(
                 <Input
-                  className={`${errors?.workExperienceCurrent ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}`}
+                  className={errors?.workExperienceCurrent ? "input-prescoring input-prescoring__long error-text" : "input-prescoring input-prescoring__long"}
                   type="number"
                   placeholder="For example 2"
                   onChange={onChange}

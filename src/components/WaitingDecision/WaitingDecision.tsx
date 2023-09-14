@@ -1,7 +1,6 @@
 import React from 'react';
 
-const WaitingDecision = () => {
-  return (
+const WaitingDecision = () => (
     <section className="wrapper">
       <article className="decision-block">
         <div className="decision-text">Wait for a decision on the application</div>
@@ -9,6 +8,5 @@ const WaitingDecision = () => {
       </article>
     </section>
   );
-};
 
 export default WaitingDecision;

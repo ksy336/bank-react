@@ -1,7 +1,6 @@
 import vector from '../../assets/icons/Vector.svg';
 
-const Services = () => {
-  return (
+const Services = () => (
     <section className="main__main__services">
       <div className="wrapper services__wrapper">
         <article className="main__info-services">
@@ -18,6 +17,5 @@ const Services = () => {
       </div>
     </section>
   );
-};
 
 export default Services;

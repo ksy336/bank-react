@@ -3,8 +3,7 @@ import present from '../../assets/img/SurpriseImage 1.png';
 import Button from '../Button/Button';
 import { Link } from 'react-router-dom';
 
-const Present = () => {
-  return (
+const Present = () => (
     <section className="wrapper">
       <article className="decision-block present-block">
         <img src={present} alt="present" width="150" height="150" />
@@ -16,6 +15,5 @@ const Present = () => {
       </article>
     </section>
   );
-};
 
 export default Present;

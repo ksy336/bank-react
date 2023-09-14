@@ -20,7 +20,6 @@ const FileForSigning = () => {
       setDocumentStep("sentDocument")
       try {
         await sendSigning(id).unwrap();
-        setDocumentStep("sentDocument")
       } catch(e) {
         console.warn(e);
         throw new Error(e);

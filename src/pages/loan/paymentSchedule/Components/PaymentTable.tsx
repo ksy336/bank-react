@@ -1,8 +1,7 @@
 import React from 'react';
 
 
-const PaymentTable = ({item}) => {
-  return (
+const PaymentTable = ({item}) => (
       <div className="list-container-payment">
         <ul className="number-item for-all-items">
           <li>{item?.number}</li>
@@ -24,6 +23,5 @@ const PaymentTable = ({item}) => {
         </ul>
       </div>
   );
-};
 
 export default PaymentTable;

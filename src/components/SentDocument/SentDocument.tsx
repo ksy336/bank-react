@@ -1,7 +1,5 @@
-import React from 'react';
 
-const SentDocument = () => {
-  return (
+const SentDocument = () => (
     <section className="wrapper">
       <article className="decision-block">
         <div className="decision-text">Documents have been successfully signed and sent for approval</div>
@@ -9,6 +7,6 @@ const SentDocument = () => {
       </article>
     </section>
   );
-};
+
 
 export default SentDocument;

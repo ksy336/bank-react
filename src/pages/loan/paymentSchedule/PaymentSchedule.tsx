@@ -12,14 +12,13 @@ import { ScheduleStepContext } from '../../../../store/FormsContext/scheduleCont
 
 const PaymentSchedule = () => {
   const [showModal, setShowModal] = useState(false);
+  const [isValid, setIsValid] = useState(false);
   const navigate = useNavigate()
+  const {id} = useParams();
+  const {setScheduleStep} = useContext(ScheduleStepContext);
 
   const {data = {}} = useGetPaymentScheduleQuery();
-  const {id} = useParams();
   const [sendSchedule, {isLoading}] = useSendDocumentMutation();
-  console.log(data);
-  const [isValid, setIsValid] = useState(false);
-  const {setScheduleStep} = useContext(ScheduleStepContext);
 
   const sendDataHandler = async (event) => {
     event.preventDefault();
@@ -28,7 +27,6 @@ const PaymentSchedule = () => {
       setScheduleStep("result")
       try {
         await sendSchedule(id).unwrap();
-        setScheduleStep("result")
       } catch(e) {
         console.warn(e);
         throw new Error(e);
@@ -89,7 +87,8 @@ const PaymentSchedule = () => {
             key={i}
             item={item}
           />
-        ))) : (<PaymentTableSimple />)}
+        ))) : <PaymentTableSimple />
+        }
         <section className="buttons-agree">
           <Button className="deny" onClick={() => setShowModal(true)}>Deny</Button>
           <div className="input-block-agree">

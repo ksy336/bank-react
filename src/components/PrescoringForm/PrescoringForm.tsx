@@ -3,8 +3,6 @@ import star from "../../assets/icons/_.svg"
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import { Controller, useForm } from 'react-hook-form';
-// import success from '../../assets/icons/Check_fill@3x.png';
-// import error from '../../assets/icons/Close_round_fill@3x.png';
 import prescoringApi from '../../../api/prescoringApi';
 import Select from '../Select/Select';
 import {StepContext} from '../../../store/FormsContext/stepContext';
@@ -29,8 +27,6 @@ const PrescoringForm = ({amount}: number) => {
       //   "passportNumber": dataForm.passportNumber
       // });
       await prescoringApi.sendFormData({...formData, amount});
-      reset();
-      setStep("loaningCards");
     } catch(e) {
       console.warn(e);
       throw new Error(e);
@@ -50,7 +46,7 @@ const PrescoringForm = ({amount}: number) => {
                    }) => (
             <Input
               type="text"
-              className={`${errors?.lastName ? "input-prescoring error-text" : "input-prescoring"}`}
+              className={errors?.lastName ? "input-prescoring error-text" : "input-prescoring"}
               placeholder="For Example Doe"
               label="Your last name"
               value={value}
@@ -69,7 +65,7 @@ const PrescoringForm = ({amount}: number) => {
           }) => (
             <Input
               type="text"
-              className={`${errors?.name ? "input-prescoring error-text" : "input-prescoring"}`}
+              className={errors?.name ? "input-prescoring error-text" : "input-prescoring"}
               placeholder="For Example Jhon"
               label="Your first name"
               value={value}
@@ -121,7 +117,7 @@ const PrescoringForm = ({amount}: number) => {
             <Input
               type="email"
               placeholder="test@gmail.com"
-              className={`${errors?.email ? "input-prescoring error-text" : "input-prescoring"}`}
+              className={errors?.email ? "input-prescoring error-text" : "input-prescoring"}
               name={name}
               label="Your email"
               onChange={onChange}
@@ -136,7 +132,7 @@ const PrescoringForm = ({amount}: number) => {
           rules={{min: 18, required: "Incorrect date of birth"}}
           render={({ field: { onChange, value, name }, fieldState: { error } }) =>(
             <Input
-              className={`${errors?.birthdate ? "input-prescoring error-text" : "input-prescoring"}`}
+              className={errors?.birthdate ? "input-prescoring error-text" : "input-prescoring"}
               type="date"
               placeholder="Select Date and Time"
               onChange={onChange}
@@ -153,7 +149,7 @@ const PrescoringForm = ({amount}: number) => {
           rules={{required: "The series must be 4 digits"}}
           render={({ field: { onChange, value, name }, fieldState: { error } }) =>(
             <Input
-              className={`${errors?.series ? "input-prescoring error-text" : "input-prescoring"}`}
+              className={errors?.series ? "input-prescoring error-text" : "input-prescoring"}
               type="text"
               placeholder="0000"
               onChange={onChange}
@@ -170,7 +166,7 @@ const PrescoringForm = ({amount}: number) => {
           rules={{required: "The series must be 6 digits"}}
           render={({ field: { onChange, value, name }, fieldState: { error } }) =>(
             <Input
-              className={`${errors?.number ? "input-prescoring error-text" : "input-prescoring"}`}
+              className={errors?.number ? "input-prescoring error-text" : "input-prescoring"}
               type="text"
               placeholder="000000"
               onChange={onChange}

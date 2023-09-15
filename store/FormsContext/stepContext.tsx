@@ -1,13 +1,14 @@
 import { createContext, useEffect, useLayoutEffect, useState } from 'react';
 
-export type ShowSelectType = {
-  showSelect: boolean;
+export type SetContextType = {
+  step: string;
+  setStep: (arg:string) => void;
 }
 export type ContextProps = {
   children: React.ReactNode;
 }
 
-export const StepContext = createContext<ShowSelectType | null>(null);
+export const StepContext = createContext<SetContextType>({} as SetContextType);
 
 const ContextProvider = ({children}: ContextProps) => {
   const [step, setStep] = useState("form");

@@ -1,4 +1,5 @@
 import {render, screen } from '@testing-library/react';
+import {describe} from 'vitest';
 import Currencies from './Currencies';
 
 const data = ["USD", "EUR", "SGD", "MYR", "AUD", "JPY"];

@@ -1,4 +1,6 @@
 import {render, screen } from '@testing-library/react';
+import {describe, expect} from 'vitest';
+
 import '@testing-library/jest-dom'
 
 import Button from './Button';
@@ -13,6 +15,5 @@ describe('Button component', () => {
 
     expect(button).toBeInTheDocument();
   });
-
 
 })

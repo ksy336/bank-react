@@ -1,0 +1,40 @@
+.text-for-pdf {
+  margin-top: 32px;
+  color: #4F5665;
+  font-family: Ubuntu, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 112%; /* 22.4px */
+}
+
+.button-send-pdf {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+}
+
+.button-send{
+  border-radius: 8px;
+  background: var(--blue-3, #003CFF);
+  display: flex;
+  width: 160px;
+  height: 40px;
+  padding: 8px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--White, #FFF);
+  text-align: center;
+  font-feature-settings: 'salt' on, 'liga' off;
+  font-family: Ubuntu, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 112%; /* 17.92px */
+  letter-spacing: 0.32px;
+  border: none;
+  margin-left: 30px;
+}

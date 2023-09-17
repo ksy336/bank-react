@@ -36,6 +36,7 @@
 }
 
 .input-prescoring {
+  padding-left: 16px;
   width: 297px;
   //height: 40px;
   border-radius: 6px;
@@ -50,6 +51,12 @@
   font-weight: 500;
   //background: url(../../assets/icons/) no-repeat scroll 7px 7px;
   //padding-left:30px
+}
+.input-prescoring__long {
+  width: 401px;
+}
+.input-prescoring__max-long {
+  width: 608px;
 }
 
 .input-prescoring::placeholder {

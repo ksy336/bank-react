@@ -21,7 +21,7 @@ const Card = ({ newsItem, itemRef } : newsItemProp) => {
         alt="image"
         onError={imageOnErrorHandler}
       />
-      <p className="news-text">{newsItem?.title.replaceAll(/<\/?[^>]+(>|$)/gi, "")}</p>
+      <p className="news-text">{newsItem?.title?.replaceAll(/<\/?[^>]+(>|$)/gi, "")}</p>
       <p className="description-text">{newsItem?.description?.replaceAll(/<\/?[^>]+(>|$)/gi, "")}</p>
     </Link>
   );

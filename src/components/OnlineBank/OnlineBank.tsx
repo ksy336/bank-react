@@ -4,8 +4,7 @@ import cardSecond from '../../assets/img/cardImage2 1.png'
 import cardThird from '../../assets/img/cardImage3 1.png';
 import cardForth from '../../assets/img/cardImage4 1.png';
 
-const OnlineBank = () => {
-  return (
+const OnlineBank = () => (
     <section className="main__main__card">
       <div className="wrapper card__wrapper">
         <article className="layout-2-column">
@@ -27,6 +26,6 @@ const OnlineBank = () => {
       </div>
     </section>
   );
-};
+
 
 export default OnlineBank;

@@ -1,0 +1,18 @@
+.image-notfound {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-main-not-found,
+.text-main-not-found-second {
+  @include font($size: 30px, $height: 112%, $weight: 500);
+  color: #000;
+  font-family: Ubuntu, sans-serif;
+  margin-bottom: 32px;
+}
+.text-not-found {
+  color: #4B4B4B;
+  @include font($size: 16px, $height: 112%, $weight: 500);
+  font-family: Ubuntu, sans-serif;
+  margin-bottom: 32px;
+}
